@@ -11,16 +11,16 @@
 
 #include "api.h"
 #include "utils_hash.h"
-#include "randombytes.h"
+// #include "randombytes.h"
 
 
 
 
 int
-crypto_sign_keypair(unsigned char *pk, unsigned char *sk)
+crypto_sign_keypair(unsigned char *pk, unsigned char *sk, unsigned char *pk_seed, unsigned char *sk_seed)
 {
-    unsigned char sk_seed[LEN_SKSEED] = {0};
-    randombytes( sk_seed , LEN_SKSEED );
+    //unsigned char sk_seed[LEN_SKSEED] = {0};
+    //randombytes( sk_seed , LEN_SKSEED );
 
 #if defined _RAINBOW_CLASSIC
 
@@ -28,14 +28,14 @@ crypto_sign_keypair(unsigned char *pk, unsigned char *sk)
 
 #elif defined _RAINBOW_CYCLIC
 
-    unsigned char pk_seed[LEN_PKSEED] = {0};
-    randombytes( pk_seed , LEN_PKSEED );
+    // unsigned char pk_seed[LEN_PKSEED] = {0};
+    // randombytes( pk_seed , LEN_PKSEED );
     generate_keypair_cyclic( (cpk_t*) pk , (sk_t*) sk , pk_seed , sk_seed );
 
 #elif defined _RAINBOW_CYCLIC_COMPRESSED
 
-    unsigned char pk_seed[LEN_PKSEED] = {0};
-    randombytes( pk_seed , LEN_PKSEED );
+    // unsigned char pk_seed[LEN_PKSEED] = {0};
+    // randombytes( pk_seed , LEN_PKSEED );
     generate_compact_keypair_cyclic( (cpk_t*) pk , (csk_t*) sk , pk_seed , sk_seed );
 
 #else

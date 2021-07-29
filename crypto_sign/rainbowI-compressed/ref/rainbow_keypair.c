@@ -323,9 +323,7 @@ error.
 
 
 int generate_secretkey_cyclic( sk_t* sk, const unsigned char *pk_seed , const unsigned char *sk_seed )
-{
-    memcpy( sk->sk_seed , sk_seed , LEN_SKSEED );
-
+{   
     // prng for sk
     prng_t _prng;
     prng_t * prng0 = &_prng;
@@ -344,12 +342,14 @@ int generate_secretkey_cyclic( sk_t* sk, const unsigned char *pk_seed , const un
     prng_t * prng1 = &_prng;
     prng_set( prng1 , pk_seed , LEN_PKSEED );
     generate_B1_B2( Qs->l1_F1 , prng1 );
-
+ 
     obfuscate_l1_polys( Qs->l1_F1 , Qs->l2_F1 , N_TRIANGLE_TERMS(_V1) , sk->s1 );
     obfuscate_l1_polys( Qs->l1_F2 , Qs->l2_F2 , _V1*_O1 , sk->s1 );
-
+    return 1;
     // calcuate the parts of sk according to pk.
     calculate_F_from_Q( sk , Qs , sk );
+ 
+
 
     // clean
     memset( Qs , 0 , sizeof(sk_t) );  // since Qs has benn modified by sk
@@ -364,6 +364,8 @@ int generate_secretkey_cyclic( sk_t* sk, const unsigned char *pk_seed , const un
 
 int generate_keypair_cyclic( cpk_t * pk, sk_t* sk, const unsigned char *pk_seed , const unsigned char *sk_seed )
 {
+    sk_t * _sk;
+    memcpy( sk->sk_seed , sk_seed , LEN_SKSEED );
     memcpy( pk->pk_seed , pk_seed , LEN_PKSEED );
     memcpy( sk->sk_seed , sk_seed , LEN_SKSEED );
 

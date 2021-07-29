@@ -91,7 +91,6 @@ $(DEST)/%.bin: elf/%.elf
 	mkdir -p $(DEST)
 	$(OBJCOPY) -Obinary $^ $@
 
-
 elf/$(TARGET_NAME)_%.elf: crypto_$(TYPE)/%.c $(COMMONSOURCES_M4) $(RANDOMBYTES_M4) $(IMPLEMENTATION_SOURCES) $(IMPLEMENTATION_HEADERS) $(EMLIB) $(LIBEFM32GG11B) lib
 	mkdir -p elf
 	$(CC) -o $@ $(CFLAGS) -DMUPQ_NAMESPACE=$(MUPQ_NAMESPACE) \

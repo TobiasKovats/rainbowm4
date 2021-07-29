@@ -29,7 +29,7 @@ error here
 #define CRYPTO_BYTES _SIGNATURE_BYTE
 #define CRYPTO_ALGNAME "RAINBOW(16,36,32,32) - classic"
 
-int crypto_sign_keypair(uint8_t *pk, uint8_t *sk);
+int crypto_sign_keypair(uint8_t *pk, uint8_t *sk, unsigned char *pk_seed, unsigned char *sk_seed);
 
 
 int crypto_sign_signature(

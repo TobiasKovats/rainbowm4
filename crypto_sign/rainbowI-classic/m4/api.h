@@ -55,7 +55,7 @@ extern  "C" {
 
 
 int
-crypto_sign_keypair(unsigned char *pk, unsigned char *sk);
+crypto_sign_keypair(unsigned char *pk, unsigned char *sk, unsigned char *pk_seed,unsigned char *sk_seed);
 
 int
 crypto_sign(unsigned char *sm, size_t *smlen,
