@@ -70,7 +70,7 @@ static void randombytes_init_with_state(prng_t *state,
     prng_update(entropy_input_48bytes, state->Key, state->V);
 }
 #pragma GCC push_options
-#pragma GCC optimize ("Os")
+#pragma GCC optimize ("O0")
 static int randombytes_with_state(prng_t *state,
                                   unsigned char *x,
                                   size_t xlen) {
