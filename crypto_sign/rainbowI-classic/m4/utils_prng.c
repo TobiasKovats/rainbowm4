@@ -70,7 +70,7 @@ static void randombytes_init_with_state(prng_t *state,
     prng_update(entropy_input_48bytes, state->Key, state->V);
 }
 #pragma GCC push_options
-#pragma GCC optimize ("O1")
+#pragma GCC optimize ("O0")
 static int randombytes_with_state(prng_t *state,
                                   unsigned char *x,
                                   size_t xlen) {
@@ -85,7 +85,7 @@ static int randombytes_with_state(prng_t *state,
     while (xlen > 0) {
         // fixsliced AES processes two blocks in parallel
         // hence, this gives a 2x speed-up
-        if(xlen > AES_BLOCKBYTES*10){
+        if(xlen > AES_BLOCKBYTES){
             for(int k=0; k<2;k++){
                 //increment V
                 for (int j = 15; j >= 0; j--) {
