@@ -45,6 +45,7 @@ int rainbow_sign(uint8_t *signature, const sk_t *sk, const uint8_t *_digest)
 
     // roll vinegars.
     uint8_t vinegar[_V1_BYTE];
+   
     unsigned n_attempt = 0;
     unsigned l1_succ = 0;
     while (!l1_succ)
@@ -286,6 +287,7 @@ int rainbow_sign(uint8_t *signature, const sk_t *sk, const uint8_t *_digest)
         return -1;
     memcpy(signature, w, _PUB_N_BYTE);
     memcpy(signature + _PUB_N_BYTE, salt, _SALT_BYTE);
+    
     return 0;
 }
 

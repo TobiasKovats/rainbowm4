@@ -14,5 +14,6 @@ typedef struct {
 
 int prng_set(prng_t *ctx, const void *prng_seed, unsigned long prng_seedlen);
 int prng_gen(prng_t *ctx, unsigned char *out, unsigned long outlen);
+int randombytes_with_state(prng_t *state, unsigned char *x, size_t xlen);
 
 #endif // _UTILS_PRNG_H_

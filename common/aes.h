@@ -8,7 +8,7 @@
 #define AES192_KEYBYTES 24
 #define AES256_KEYBYTES 32
 #define AESCTR_NONCEBYTES 12
-#define AES_BLOCKBYTES 16
+#define AES_BLOCKBYTES 32
 
 typedef struct {
     uint32_t sk_exp[2*11*AES_BLOCKBYTES/sizeof(uint32_t)];
